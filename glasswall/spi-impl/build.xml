@@ -1,0 +1,48 @@
+<project name="glasswall-spi-impl" default="dist" basedir=".">
+
+	<property name="src.main.java" location="src/main/java" />
+	<property name="src.main.resources" location="src/main/resources" />
+	<property name="output" location="output" />
+	<property name="output.main" location="output/main" />
+	<property name="lib" location="lib" />
+	<property name="spi.lib" location="../spi/dist" />
+	<property name="dist" location="dist" />
+	<property name="ant.build.javac.source" value="1.5" />
+	<property name="ant.build.javac.target" value="1.5" />
+
+	<path id="main.class.path">
+		<fileset dir="${lib}">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${spi.lib}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="init">
+		<mkdir dir="${output}" />
+		<mkdir dir="${output.main}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the source ">
+		<javac srcdir="${src.main.java}" destdir="${output.main}" classpathref="main.class.path" includeantruntime="false" debug="true" />
+		<copy todir="${output.main}">
+			<fileset dir="${src.main.resources}" />
+		</copy>
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<mkdir dir="${dist}" />	
+		<jar destfile="${dist}/${ant.project.name}.jar.plugin">
+			<zipgroupfileset dir="lib" includes="*.jar" />
+			<fileset dir="${output.main}" />
+		</jar>
+
+	</target>
+
+	<target name="clean" description="clean up">
+		<delete dir="${output}" />
+		<delete dir="${dist}" />
+	</target>
+</project>
