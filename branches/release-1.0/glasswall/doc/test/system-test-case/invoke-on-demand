@@ -1,0 +1,69 @@
+#first-invocation
+Input: 
+  1.start the webapp
+  2.visit a URL which will invoke logging
+  3.invoke the agent
+  4.do #2
+Expecting:
+  At step#3, seeing verbose "non-silent" on console 
+  At step#4, seeing logs on pages
+  
+
+
+#first-silent-invocation
+Input: 
+  1.start the webapp
+  2.visit a URL which will invoke logging
+  3.invoke the agent with silent mode
+  4.do #2
+Expecting:
+  At step#3, seeing verbose "silent" on console 
+  At step#4, seeing no logs on pages
+
+  
+  
+#second-invocation
+Input:
+  1.start the webapp
+  2.visit a URL which will invoke logging
+  3.invoke the agent
+  4.do #2
+  5.invoke the agent again
+  6.do #2
+Expecting:
+  At step#5
+     a. seeing verbose "no more transformation" on console
+     b. seeing verbose "non-silent" on console 
+  At step#6, seeing logs on pages and there should be no duplication of logs     
+  
+  
+#second-invocation-is-silent  
+Input:
+  1.start the webapp
+  2.visit a URL which will invoke logging
+  3.invoke the agent
+  4.do #2
+  5.invoke the agent again with silent mode
+  6.do #2
+Expecting:
+  At step#5
+     a. seeing verbose "no more transformation" on console
+     b. seeing verbose "silent" on console 
+  At step#6, seeing no logs on pages     
+
+  
+#normal-silent-normal
+Input:
+  1.start the webapp
+  2.visit a URL which will invoke logging
+  3.invoke the agent
+  4.do #2
+  5.invoke the agent again with silent mode
+  6.do #2
+  7.invoke the agent for the 3rd time without silent mode
+  8.do #2
+Expecting:
+  At step#7
+     a. seeing verbose "no more transformation" on console
+     b. seeing verbose "non-silent" on console 
+  At step#8, seeing logs on pages

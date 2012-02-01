@@ -1,0 +1,14 @@
+	
+		org.apache.log4j.TTCCLayout glasswallLog4jLayout = new org.apache.log4j.TTCCLayout(org.apache.log4j.helpers.AbsoluteTimeDateFormat.ABS_TIME_DATE_FORMAT);
+		String glasswallMessage = glasswallLog4jLayout.format(#EVENT);
+		#MESSAGE_PIPE.#ADD_MESSAGE("log4j:"+glasswallMessage);
+		if (glasswallLog4jLayout.ignoresThrowable()) {
+			String[] s = #EVENT.getThrowableStrRep();
+			if (s != null) {
+				int len = s.length;
+				for (int i = 0; i < len; i++) {
+					#MESSAGE_PIPE.#ADD_MESSAGE(s[i]);
+				}
+			}
+		}
+	
