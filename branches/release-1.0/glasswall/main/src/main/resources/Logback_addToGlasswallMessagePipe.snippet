@@ -1,0 +1,6 @@
+		ch.qos.logback.classic.PatternLayout patternLayout = new ch.qos.logback.classic.PatternLayout();
+		patternLayout.setContext(this.getLoggerContext());		
+		patternLayout.setPattern("%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n - %ex");
+		patternLayout.start();			
+		String glasswallMessage = patternLayout.doLayout(#EVENT);
+		#MESSAGE_PIPE.#ADD_MESSAGE("logback:"+glasswallMessage);	

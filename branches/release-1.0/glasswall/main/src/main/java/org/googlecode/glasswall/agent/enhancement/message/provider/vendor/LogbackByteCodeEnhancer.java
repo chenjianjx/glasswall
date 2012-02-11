@@ -19,11 +19,11 @@ import org.googlecode.glasswall.util.lang.GlasswallStringBuilder;
  * @author chenjianjx
  * 
  */
-public class Log4jByteCodeEnhancer extends MessagePlayerByteCodeEnhancer {
+public class LogbackByteCodeEnhancer extends MessagePlayerByteCodeEnhancer {
 
-	public static final String CLASS_TO_ENHANCE = "org.apache.log4j.Category";
+	public static final String CLASS_TO_ENHANCE = "ch.qos.logback.classic.Logger";
 
-	public Log4jByteCodeEnhancer(String className) {
+	public LogbackByteCodeEnhancer(String className) {
 		super(className);
 	}
 
@@ -35,26 +35,18 @@ public class Log4jByteCodeEnhancer extends MessagePlayerByteCodeEnhancer {
 		ByteCodeManipulator byteCodeMan = ByteCodeManipulatorRepository
 				.getManipulator(loader);
 
-		classfileBuffer = enhanceMethod_callAppenders(classfileBuffer,
-				dotSeperatedClassname, byteCodeMan);
+		classfileBuffer = enhanceMethod_callAppenders(dotSeperatedClassname,
+				byteCodeMan);
 
 		return classfileBuffer;
 
 	}
 
-	private byte[] enhanceMethod_callAppenders(byte[] classfileBuffer,
-			String className, ByteCodeManipulator byteCodeMan) {
-
+	private byte[] enhanceMethod_callAppenders(String className,
+			ByteCodeManipulator byteCodeMan) {
+		byte[] classfileBuffer;
 		String methodName = "callAppenders";
-		List<String> methodParamTypes = asList("org.apache.log4j.spi.LoggingEvent");
-
-		// for example, log4j-over-slfj.jar has the class but the class doesn't
-		// have this method; do nothing in
-		// this case
-		if (!byteCodeMan.hasMethod(className, methodName, methodParamTypes)) {
-			return classfileBuffer;
-		}
-
+		List<String> methodParamTypes = asList("ch.qos.logback.classic.spi.ILoggingEvent");
 		GlasswallStringBuilder newStatement = new GlasswallStringBuilder();
 		newStatement.appendLine(generate_ifNotSilent()).append("{");
 		newStatement.appendLine(generate_addToGlasswallMessagePipe());
@@ -66,7 +58,7 @@ public class Log4jByteCodeEnhancer extends MessagePlayerByteCodeEnhancer {
 
 	private String generate_addToGlasswallMessagePipe() {
 		String method = GlasswallIOUtils.readClasspathResource(this.getClass()
-				.getClassLoader(), "Log4j_addToGlasswallMessagePipe.snippet",
+				.getClassLoader(), "Logback_addToGlasswallMessagePipe.snippet",
 				"UTF-8");
 
 		method = method.replace("#MESSAGE_PIPE",
@@ -77,5 +69,7 @@ public class Log4jByteCodeEnhancer extends MessagePlayerByteCodeEnhancer {
 				GlasswallSourceCodeVariables.METHOD_PARAM_PREFIX + 1);
 		return method;
 	}
+
+ 
 
 }
