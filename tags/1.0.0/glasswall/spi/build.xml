@@ -1,0 +1,33 @@
+<project name="glasswall-spi" default="dist" basedir=".">
+
+	<property name="src.main.java" location="src/main/java" />
+	<property name="src.main.resources" location="src/main/resources" />
+	<property name="output" location="output" />
+	<property name="output.main" location="output/main" />
+	<property name="dist" location="dist" />
+	<property name="ant.build.javac.source" value="1.5" />
+	<property name="ant.build.javac.target" value="1.5" />
+
+	<target name="init">
+		<mkdir dir="${output}" />
+		<mkdir dir="${output.main}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the source">
+		<javac srcdir="${src.main.java}" destdir="${output.main}" includeantruntime="false"  debug="true"/>
+		<copy todir="${output.main}">
+			<fileset dir="${src.main.resources}" />
+		</copy>
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<mkdir dir="${dist}" />
+		<jar jarfile="${dist}/${ant.project.name}.jar" basedir="${output.main}" />
+	</target>
+
+	<target name="clean" description="clean up">
+		<delete dir="${output}" />
+		<delete dir="${dist}" />
+	</target>
+</project>

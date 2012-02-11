@@ -1,0 +1,14 @@
+Overview:
+   The agent is using javassist and the webapp may be also using that. 
+   If there is no class-loading separation, the webapp may end up using the javassit loaded by the agent's class loader, since it is the parent loader of the webapp's.
+
+
+Test Case: 
+  1. make a webapp, which includes javassist API under its WEB-INF/lib
+  2. create a servlet inside that webapp and do the following: 
+		 String className = ClassPool.class.getName().replace('.', '/') + ".class";
+		 logger.warn("Position of ClassPool: " +  ClassPool.class.getClassLoader().getResource(className));
+  3. start the webapp and run the servlet somehow. And then check the console output. 
+  
+  Expectation: At #3, the console shows something like "Position of ClassPool: .../WEB-INF/lib/javassist-3.9.0.GA.jar!/javassist/ClassPool.class"   
+        
