@@ -9,7 +9,6 @@ import org.googlecode.glasswall.agent.enhancement.message.MessagePlayerByteCodeE
 import org.googlecode.glasswall.agent.enhancement.message.consumer.HttpServletClassEnhancer;
 import org.googlecode.glasswall.agent.enhancement.message.provider.vendor.JulByteCodeEnhancer;
 import org.googlecode.glasswall.agent.enhancement.message.provider.vendor.Log4jByteCodeEnhancer;
-import org.googlecode.glasswall.agent.enhancement.message.provider.vendor.LogbackByteCodeEnhancer;
 import org.googlecode.glasswall.util.lang.GlasswallClassnameUtils;
 
 /**
@@ -25,9 +24,6 @@ public class MessagePlayerByteCodeEnhancerRepository {
 	static {
 		ENHANCER_TYPES.put(Log4jByteCodeEnhancer.CLASS_TO_ENHANCE,
 				Log4jByteCodeEnhancer.class);
-		
-		ENHANCER_TYPES.put(LogbackByteCodeEnhancer.CLASS_TO_ENHANCE,
-				LogbackByteCodeEnhancer.class);		
 
 		ENHANCER_TYPES.put(JulByteCodeEnhancer.CLASS_TO_ENHANCE,
 				JulByteCodeEnhancer.class);

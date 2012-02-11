@@ -35,26 +35,18 @@ public class Log4jByteCodeEnhancer extends MessagePlayerByteCodeEnhancer {
 		ByteCodeManipulator byteCodeMan = ByteCodeManipulatorRepository
 				.getManipulator(loader);
 
-		classfileBuffer = enhanceMethod_callAppenders(classfileBuffer,
-				dotSeperatedClassname, byteCodeMan);
+		classfileBuffer = enhanceMethod_callAppenders(dotSeperatedClassname,
+				byteCodeMan);
 
 		return classfileBuffer;
 
 	}
 
-	private byte[] enhanceMethod_callAppenders(byte[] classfileBuffer,
-			String className, ByteCodeManipulator byteCodeMan) {
-
+	private byte[] enhanceMethod_callAppenders(String className,
+			ByteCodeManipulator byteCodeMan) {
+		byte[] classfileBuffer;
 		String methodName = "callAppenders";
 		List<String> methodParamTypes = asList("org.apache.log4j.spi.LoggingEvent");
-
-		// for example, log4j-over-slfj.jar has the class but the class doesn't
-		// have this method; do nothing in
-		// this case
-		if (!byteCodeMan.hasMethod(className, methodName, methodParamTypes)) {
-			return classfileBuffer;
-		}
-
 		GlasswallStringBuilder newStatement = new GlasswallStringBuilder();
 		newStatement.appendLine(generate_ifNotSilent()).append("{");
 		newStatement.appendLine(generate_addToGlasswallMessagePipe());
@@ -77,5 +69,7 @@ public class Log4jByteCodeEnhancer extends MessagePlayerByteCodeEnhancer {
 				GlasswallSourceCodeVariables.METHOD_PARAM_PREFIX + 1);
 		return method;
 	}
+
+ 
 
 }
