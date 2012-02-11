@@ -1,0 +1,4 @@
+#1 run it in load-on-startup mode and invoke-on-demand mode under sun jdk6
+#2 run it in load-on-startup mode under sun jdk5
+#3 run it in both modes under linux
+#4 run it in both modes under windows
