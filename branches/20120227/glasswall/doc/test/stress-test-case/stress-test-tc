@@ -1,0 +1,10 @@
+Prepare:
+  make such a web-app: accepts a parameter and then log it
+  
+Input: 
+  carry out concurrent http requests. Each thread should be doing the following infinitely:  
+    1. invoke a request with a random parameter, say $param
+    2. make a snapshot of the response page
+
+Expecting:
+   At step2, "$param" can be seen on the response page  

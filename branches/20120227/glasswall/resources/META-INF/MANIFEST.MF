@@ -1,0 +1,4 @@
+Premain-Class: org.googlecode.glasswall.agent.GlasswallAgent
+Agent-Class: org.googlecode.glasswall.agent.GlasswallAgent
+Can-Retransform-Classes: true
+Can-Redefine-Classes: true
