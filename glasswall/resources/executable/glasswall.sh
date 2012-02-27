@@ -27,7 +27,21 @@
           ;;
        esac
        echo "USING JAVA_HOME=${JAVA_HOME}"
-       ${JAVA_HOME}/bin/java -cp ${TOOLS_JAR}:glasswall.jar org.googlecode.glasswall.attach.AttachMain $*
+       
+       PRG="$0"     
+       while [ -h "$PRG" ] ; do   
+           ls=`ls -ld "$PRG"`   
+           link=`expr "$ls" : '.*-> \(.*\)$'`    
+           if expr "$link" : '/.*' > /dev/null; then   
+               PRG="$link"  
+           else  
+               PRG=`dirname "$PRG"`/"$link"   
+           fi  
+       done         
+       PRGDIR=`dirname "$PRG"`
+       echo "The executable is in ${PRGDIR}"
+       
+       ${JAVA_HOME}/bin/java -cp ${TOOLS_JAR}:${PRGDIR}/glasswall.jar org.googlecode.glasswall.attach.AttachMain $*
     else
        echo "Please set JAVA_HOME before running this script"
        exit 1
