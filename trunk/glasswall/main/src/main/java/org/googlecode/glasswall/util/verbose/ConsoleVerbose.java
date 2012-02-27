@@ -35,10 +35,19 @@ public class ConsoleVerbose implements Verbose {
 		pn(buffer.getBuffer().toString());
 		printWriter.close();
 	}
+	
+	@Override
+	public void println(String msg, Throwable e) {
+		 this.println(msg);
+		 this.println(e);
+		
+	}
 
 	private void pn(String msg) {
 		System.out.println(PROJECT_NAME + ":  " + msg);
 	}
+
+
 
  
 }
