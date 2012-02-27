@@ -25,8 +25,9 @@ public abstract class MessagePlayerByteCodeEnhancer {
 
 	public byte[] enhance(ClassLoader loader, byte[] classfileBuffer) {
 		byte[] buffer = this.doEnhance(loader, classfileBuffer);
-		verbose.println(this.getClass().getSimpleName() + " has transformed "
+		verbose.println(this.getClass().getSimpleName() + " has enhanced "
 				+ className);
+		
 		return buffer;
 	}
 

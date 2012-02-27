@@ -7,7 +7,6 @@ import static org.googlecode.glasswall.util.lang.GlasswallReflectUtils.invokeSta
 import static org.googlecode.glasswall.util.lang.GlasswallReflectUtils.invokeStaticBooleanSetter;
 
 import java.lang.instrument.Instrumentation;
-import java.lang.instrument.UnmodifiableClassException;
 
 import org.googlecode.glasswall.agent.enhancement.message.provider.MessagePlayerByteCodeEnhancerRepository;
 import org.googlecode.glasswall.agent.message.MessagePipeClassGenerator;
@@ -134,8 +133,8 @@ public class GlasswallAgent {
 	private static void retransform(Instrumentation inst, Class<?> clazz) {
 		try {
 			inst.retransformClasses(clazz);
-		} catch (UnmodifiableClassException e) {
-			throw new RuntimeException(e);
+		} catch (Exception e) {
+			verbose.println("Failed to transform class " + clazz, e);			
 		}
 	}
 
