@@ -24,7 +24,7 @@ public class HttpServletClassEnhancer extends MessagePlayerByteCodeEnhancer {
 	private static final List<String> SERVICE_METHOD_PARAM_TYPES = asList(
 			"javax.servlet.ServletRequest", "javax.servlet.ServletResponse");
 	private static final String SERVICE_METHOD = "service";
-	
+
 	public static final String CLASS_TO_ENHANCE = "javax.servlet.http.HttpServlet";
 
 	public HttpServletClassEnhancer(String className) {
@@ -59,6 +59,9 @@ public class HttpServletClassEnhancer extends MessagePlayerByteCodeEnhancer {
 		newStatements.append(MessageFormat.format("{0}.clearMessages();",
 				MESSAGE_PIPE_CLASS));
 
+		newStatements.append(MessageFormat.format(
+				"{0}.setCanAddMessage(Boolean.TRUE);", MESSAGE_PIPE_CLASS));
+
 		byte[] bytes = byteCodeMan.insertAtMethodStart(className,
 				SERVICE_METHOD, SERVICE_METHOD_PARAM_TYPES,
 				newStatements.toString());
@@ -89,7 +92,5 @@ public class HttpServletClassEnhancer extends MessagePlayerByteCodeEnhancer {
 				MessagePipeClassGenerator.CLEAR_MESSAGES);
 		return method;
 	}
-
- 
 
 }
