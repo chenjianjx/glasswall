@@ -1,0 +1,16 @@
+Changes
+- version 1.0.2 on Mar 16, 2012
+  #Will not add log messages to message pipe if current thread is not initialed by a http request
+
+
+- version 1.0.1 on Feb 27, 2012
+  #Will not exit if a class cannot be retransformed, but just print error information
+  #enable glasswall.sh to find glasswall.jar by itself so that glasswall.sh can be invoked at any other path (soft link to glasswall.sh e.g.) 
+   
+
+- version 1.0.0 on Feb 11, 2012
+  #Added support for logback
+  #In v0.9.0, if log4j-over-slfj.jar is used, an exception will be printed since "org.apache.log4j.spi.LoggingEvent" will not be found in the classpath. v1.0.0 will just stop transforming in this case and also avoid exception shown. 
+
+- version 0.9.0 on Jan.14, 2012
+  The first released version 

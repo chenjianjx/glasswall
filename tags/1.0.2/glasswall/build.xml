@@ -1,0 +1,71 @@
+<project name="glasswall" default="dist" basedir=".">
+
+	<property name="output" location="output" />
+	<property name="dist" location="dist" />
+	<property name="release" location="release" />
+	<property name="version" value="1.0.2" />
+
+	<target name="init">
+		<mkdir dir="${output}" />
+		<mkdir dir="${dist}" />
+		<mkdir dir="${release}" />
+	</target>
+
+	<target name="dist-children">
+		<ant dir="spi" target="dist" inheritAll="false" />
+		<ant dir="spi-impl" target="dist" inheritAll="false" />
+		<ant dir="main" target="dist" inheritAll="false" />
+	</target>
+
+	<target name="dist" depends="clean,init,dist-children">
+		<copy todir="${output}">
+			<fileset dir="spi/dist">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="main/dist">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="spi-impl/dist">
+				<include name="**/*.jar.plugin" />
+			</fileset>
+		</copy>
+
+		<jar destfile="${dist}/${ant.project.name}.jar" manifest="resources/META-INF/MANIFEST.MF">
+			<zipgroupfileset dir="${output}" includes="*.jar" />
+			<fileset dir="${output}" includes="*.jar.plugin" />
+		</jar>
+
+		<copy todir="${dist}">
+			<fileset dir="resources/executable">
+				<include name="**/*.sh" />
+				<include name="**/*.bat" />
+			</fileset>
+		</copy>
+
+	</target>
+
+
+	<target name="release" depends="dist">
+
+		<zip destfile="${release}/${ant.project.name}-${version}.zip">
+			<zipfileset dir="resources/release-resources"/>
+			<zipfileset dir="${dist}"/>			
+		</zip>
+
+		<tar destfile="${release}/${ant.project.name}-${version}.tar.gz" compression="gzip">
+			<zipfileset src="${release}/${ant.project.name}-${version}.zip" />
+		</tar>
+	</target>
+
+
+	<target name="clean">
+		<ant dir="spi" target="clean" inheritAll="false" />
+		<ant dir="spi-impl" target="clean" inheritAll="false" />
+		<ant dir="main" target="clean" inheritAll="false" />
+		<delete dir="${output}" />
+		<delete dir="${dist}" />
+		<delete dir="${release}" />
+	</target>
+
+
+</project>
