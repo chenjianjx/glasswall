@@ -1,4 +1,7 @@
 Changes
+- version 1.0.2 on Mar 16, 2012
+  #Will not add log messages to message pipe if current thread is not initialed by a http request
+
 
 - version 1.0.1 on Feb 27, 2012
   #Will not exit if a class cannot be retransformed, but just print error information
