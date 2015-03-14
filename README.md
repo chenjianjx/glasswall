@@ -19,14 +19,14 @@ CATALINA_OPTS=-javaagent:somewhere/glasswall.jar
   * Or you can run it after your web application has been started (only for Sun Java >=6, other vendors' JDKs(>=6) may also work if you are lucky)
     * Linux: chmod +x glasswall.sh
     * find the java process-id of your tomcat
-Linux: ps a|grep catalina or jps
-Widows:jps
+      * Linux: ps a|grep catalina or jps
+      * Widows:jps
     * start printing log entries
-Linux: ./glasswall.sh <pid>
-Windows: glasswall.bat <pid>
+      * Linux: ./glasswall.sh <pid>
+      * Windows: glasswall.bat <pid>
     * stop printing log entries
-Linux: ./glasswall.sh <pid> silent
-Windows: glasswall.bat <pid> silent
+      * Linux: ./glasswall.sh <pid> silent
+      * Windows: glasswall.bat <pid> silent
 
 ## Features & Limitations
 
