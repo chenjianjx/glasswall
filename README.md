@@ -11,23 +11,20 @@ While Glasswall does show log messages, it's not really a "logging appender". It
 
 * Download Glasswall at http://code.google.com/p/glasswall/downloads/list
 * Extract it:
-  * nix: tar -xvf glasswall-x.x.x.tar.gz
-  * windows: extract it with 7zip or another tool you like
-
-
-
+  * linux/mac: `tar -xvf glasswall-x.x.x.tar.gz`
+  * windows: extract it with 7zip or some tool you like
 * Run it with your web application (Take Tomcat as example)
-⋅⋅* You can run it while you start up your web application. Add the following to your catalina.sh (catalina.bat for Windows)
+  * You can run it while you start up your web application. Add the following to your catalina.sh (catalina.bat for Windows)
 CATALINA_OPTS=-javaagent:somewhere/glasswall.jar
-⋅⋅* Or you can run it after your web application has been started (only for Sun Java >=6, other vendors' JDKs(>=6) may also work if you are lucky)
-Linux: chmod +x glasswall.sh
-find the java process-id of your tomcat
+  * Or you can run it after your web application has been started (only for Sun Java >=6, other vendors' JDKs(>=6) may also work if you are lucky)
+    * Linux: chmod +x glasswall.sh
+    * find the java process-id of your tomcat
 Linux: ps a|grep catalina or jps
 Widows:jps
-start printing log entries
+    * start printing log entries
 Linux: ./glasswall.sh <pid>
 Windows: glasswall.bat <pid>
-stop printing log entries
+    * stop printing log entries
 Linux: ./glasswall.sh <pid> silent
 Windows: glasswall.bat <pid> silent
 
