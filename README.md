@@ -17,16 +17,16 @@ While Glasswall does show log messages, it's not really a "logging appender". It
   * You can run it while you start up your web application. Add the following to your catalina.sh (catalina.bat for Windows)
 CATALINA_OPTS=-javaagent:somewhere/glasswall.jar
   * Or you can run it after your web application has been started (only for Sun Java >=6, other vendors' JDKs(>=6) may also work if you are lucky)
-    * Linux: chmod +x glasswall.sh
+    * Linux: `chmod +x glasswall.sh`
     * find the java process-id of your tomcat
-      * Linux: ps a|grep catalina or jps
-      * Widows:jps
+      * Linux: `ps a|grep catalina or jps`
+      * Widows: `jps`
     * start printing log entries
-      * Linux: ./glasswall.sh <pid>
-      * Windows: glasswall.bat <pid>
+      * Linux: `./glasswall.sh <pid>`
+      * Windows:` glasswall.bat <pid>`
     * stop printing log entries
-      * Linux: ./glasswall.sh <pid> silent
-      * Windows: glasswall.bat <pid> silent
+      * Linux: `./glasswall.sh <pid> silent`
+      * Windows: `glasswall.bat <pid> silent`
 
 ## Features & Limitations
 
@@ -38,10 +38,10 @@ Glasswall currently supports log4j , java.util.logging and logback, the 3 most p
 As Section "Getting Started" shows, there is no invasion to your application; There is even no invasion to your application's start-up script if you choose to "Run Glasswall after the application has been started"
 ### Switching off
 What if you don't want to see log output any longer after having turned on Glasswall some while ago? You can simply turn it off
-./glasswall.sh <pid> silent
+`./glasswall.sh <pid> silent`
 Note that it will still work if Glasswall was originally started with the startup of the web application.
 And of course, you can turn it on again!
-./glasswall.sh <pid>
+`./glasswall.sh <pid>`
 ### Supporting all Operating Systems
 Glasswall is a pure-java program and can be run in all operating systems which ships JDK.
 ### Java 5 Required
