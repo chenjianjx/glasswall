@@ -11,8 +11,8 @@ While Glasswall does show log messages, it's not really a "logging appender". It
 
 * Download Glasswall at http://code.google.com/p/glasswall/downloads/list
 * Extract it:
-⋅⋅* Nix:: tar -xvf glasswall-x.x.x.tar.gz
-⋅⋅* Windows: extract it with 7zip or another tool you like
+  * nix: tar -xvf glasswall-x.x.x.tar.gz
+  * windows: extract it with 7zip or another tool you like
 
 
 
