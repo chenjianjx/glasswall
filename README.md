@@ -49,12 +49,16 @@ And of course, you can turn it on again!
 Glasswall is a pure-java program and can be run in all operating systems which ships JDK.
 ### Java 5 Required
 Glasswall is build upon Java Instrumentation API, which is not brought into Java until Java 5. With Java 5, you can start Glasswall while starting up your web application (the "-javaagent" mode). However, with java 5 you can't start it after the web application has been started. See next section for the reason.
+
 ### Sun JDK & Java 6 Needed for Invocation-on-Demand
 If you want to start Glasswall after the web application has been started, you'll need at least Java6 and, normally, Sun's JDK. That's because this feature leverages Java Attach API, which only exists in Java >=6 and is declared as a SUN-specific extension (Some versions of IBM JDK do work, however)
-Support for Non-Logging Outputs
+
+### Support for Non-Logging Outputs
 Glasswall's architecture is not limited to logging frameworks. It's a simple Message Provider/Consumer model. Currently providers are Loggers, but they can be any java module. Let's see what we will have in the future.
 ### Warning
 Please never apply Glasswall to production systems. Your users do not expect to see logs in the browser, although hackers may like it.
 ### Acknowledgments
+
 I got this idea from a company I used to work in (Let's say e******). This indeed is a great idea.
+
 I was inspired by BTrace while trying to make the tool kind-of zero-invasion. It's BTrace that reminds me of Java Attach API.
