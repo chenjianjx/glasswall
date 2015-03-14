@@ -38,10 +38,13 @@ Glasswall currently supports log4j , java.util.logging and logback, the 3 most p
 As Section "Getting Started" shows, there is no invasion to your application; There is even no invasion to your application's start-up script if you choose to "Run Glasswall after the application has been started"
 ### Switching off
 What if you don't want to see log output any longer after having turned on Glasswall some while ago? You can simply turn it off
+
 `./glasswall.sh <pid> silent`
 Note that it will still work if Glasswall was originally started with the startup of the web application.
 And of course, you can turn it on again!
+
 `./glasswall.sh <pid>`
+
 ### Supporting all Operating Systems
 Glasswall is a pure-java program and can be run in all operating systems which ships JDK.
 ### Java 5 Required
