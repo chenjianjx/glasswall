@@ -9,7 +9,7 @@ While Glasswall does show log messages, it's not really a "logging appender". It
 
 ## Getting Started
 
-* Download Glasswall at http://code.google.com/p/glasswall/downloads/list
+* Download Glasswall from [https://github.com/chenjianjx/glasswall/releases]
 * Extract it:
   * linux/mac: `tar -xvf glasswall-x.x.x.tar.gz`
   * windows: extract it with 7zip or some tool you like
